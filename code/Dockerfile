@@ -2,4 +2,4 @@ FROM debian:jessie
 
 MAINTAINER Vincent Composieux <vincent.composieux@gmail.com>
 
-VOLUME /var/www/symfony
+VOLUME $DOCKER_SYMFONY_WORKSPACE:/var/www

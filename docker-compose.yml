@@ -1,8 +1,7 @@
 application:
     build: code
     volumes:
-        - ./symfony:/var/www/symfony
-        - ./logs/symfony:/var/www/symfony/app/logs
+        - $DOCKER_SYMFONY_WORKSPACE:/var/www
     tty: true
 db:
     image: mysql
@@ -10,7 +9,6 @@ db:
         - 3306:3306
     environment:
         MYSQL_ROOT_PASSWORD: root
-        MYSQL_DATABASE: symfony
         MYSQL_USER: root
         MYSQL_PASSWORD: root
 php:
@@ -31,6 +29,7 @@ nginx:
         - application
     volumes:
         - ./logs/nginx/:/var/log/nginx
+        - ./nginx/sites-available:/etc/nginx/sites-available
 #elk:
 #    image: willdurand/elk
 #    ports:
